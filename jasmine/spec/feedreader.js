@@ -24,6 +24,7 @@ $(function() {
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
+			expect(allFeeds instanceof Array).toBeTruthy();
         });
 
         /* a test that loops through each feed
@@ -45,6 +46,7 @@ $(function() {
 			 for (i = 0; i<allFeeds.length; i++) {
 				 expect(allFeeds[i].name).toBeDefined();
 				 expect(allFeeds[i].name).not.toBe('');
+				 expect(typeof allFeeds[i].name).toBe('string');
 			 }
 		 });
     });
@@ -65,9 +67,9 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 		it('clicking menu icon changes menu display', function() {
-			$("i").click();
+			$('.menu-icon-link').click()
 			expect($('body').hasClass('menu-hidden')).toBeFalsy();
-			$("i").click();
+			$('.menu-icon-link').click()
 			expect($('body').hasClass('menu-hidden')).toBeTruthy();
 		});
 	});
@@ -99,18 +101,20 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          */
 		var contentBefore, contentAfter;
-		contentBefore = $("div.feed").html();
-		
+
 		beforeEach(function(done) {
-			setTimeout(function() {
+			loadFeed(0, function () {
+				contentBefore = $('div.feed').html();
 				done();
-			}, 3000);
+			});
 		});
 
 		it("content changes after load feed function runs", function(done) {
-			contentAfter = $("div.feed").html();
-			expect(contentAfter).not.toBe(contentBefore);
-			done();
+			loadFeed(1, function () {
+				contentAfter = $('div.feed').html();
+				expect(contentBefore).not.toBe(contentAfter);
+				done();
+			});
 		});
 	});
 }());
