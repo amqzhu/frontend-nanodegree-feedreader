@@ -88,7 +88,7 @@ $(function() {
 			setTimeout(function() {
 				numEntries = 0;
 				done();
-			}, 2000);
+			}, 3000);
 		});
 
 		it("has at least one .entry element in .feed container", function(done) {
@@ -110,7 +110,7 @@ $(function() {
 		beforeEach(function(done) {
 			setTimeout(function() {
 				done();
-			}, 2000);
+			}, 3000);
 		});
 
 		it("content changes after load feed function runs", function(done) {
