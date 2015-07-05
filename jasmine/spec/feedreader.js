@@ -29,7 +29,7 @@ $(function() {
 		 * and that the URL is not empty.
 		 */
 		it('URLs are defined and not empty', function() {
-			for (i = 0; i<allFeeds.length; i++) {
+			for (var i = 0; i<allFeeds.length; i++) {
 				expect(allFeeds[i].url).toBeDefined();
 				expect(allFeeds[i].url).not.toBe('');
 			}
@@ -40,7 +40,7 @@ $(function() {
 		 * and that the name is not empty.
 		 */
 		it('names are defined and not empty', function() {
-			for (i = 0; i < allFeeds.length; i++) {
+			for (var i = 0; i < allFeeds.length; i++) {
 				expect(allFeeds[i].name).toBeDefined();
 				expect(allFeeds[i].name).not.toBe('');
 				expect(typeof allFeeds[i].name).toBe('string');
@@ -80,7 +80,7 @@ $(function() {
 		var numEntries = 0;
 		beforeEach(function(done) {
 			loadFeed(0, function() {
-				numEntries = $(".feed").children().size();
+				numEntries = $('.feed').children().size();
 				done();
 			});
 		});
