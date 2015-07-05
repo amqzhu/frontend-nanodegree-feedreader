@@ -29,9 +29,10 @@ $(function() {
 		 * and that the URL is not empty.
 		 */
 		it('URLs are defined and not empty', function() {
-			for (var i = 0; i<allFeeds.length; i++) {
+			for (var i = 0; i < allFeeds.length; i++) {
 				expect(allFeeds[i].url).toBeDefined();
 				expect(allFeeds[i].url).not.toBe('');
+				expect(allFeeds[i].url).not.toBeNull();
 			}
 		});
 
@@ -43,6 +44,7 @@ $(function() {
 			for (var i = 0; i < allFeeds.length; i++) {
 				expect(allFeeds[i].name).toBeDefined();
 				expect(allFeeds[i].name).not.toBe('');
+				expect(allFeeds[i].name).not.toBeNull();
 				expect(typeof allFeeds[i].name).toBe('string');
 			}
 		});
