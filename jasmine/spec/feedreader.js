@@ -9,28 +9,25 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
-    /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+	/* This is our first test suite - a test suite just contains
+	* a related set of tests. This suite is all about the RSS
+	* feeds definitions, the allFeeds variable in our application.
+	*/
 	describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
+		/* This is our first test - it tests to make sure that the
+		 * allFeeds variable has been defined and that it is not
+		 * empty. 
+		 */
 		it('are defined', function() {
 			expect(allFeeds).toBeDefined();
 			expect(allFeeds.length).not.toBe(0);
 			expect(allFeeds instanceof Array).toBeTruthy();
 		});
 
-        /* a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+		/* a test that loops through each feed
+		 * in the allFeeds object and ensures it has a URL defined
+		 * and that the URL is not empty.
+		 */
 		it('URLs are defined and not empty', function() {
 			for (i = 0; i<allFeeds.length; i++) {
 				expect(allFeeds[i].url).toBeDefined();
@@ -38,10 +35,10 @@ $(function() {
 			}
 		});
 
-        /* a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+		/* a test that loops through each feed
+		 * in the allFeeds object and ensures it has a name defined
+		 * and that the name is not empty.
+		 */
 		it('names are defined and not empty', function() {
 			for (i = 0; i < allFeeds.length; i++) {
 				expect(allFeeds[i].name).toBeDefined();
@@ -52,20 +49,20 @@ $(function() {
 	});
 
 
-    /* a new test suite named "The menu" */
+	/* a new test suite named "The menu" */
 	describe('The menu', function() {
-        /* a test that ensures the menu element is
-         * hidden by default. 
-         */
+		/* a test that ensures the menu element is
+		 * hidden by default. 
+		 */
 		it('menu element is hidden by default', function() {
 			expect($('body').hasClass('menu-hidden')).toBeTruthy();
 		});
 
-         /* a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * has two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+		/* a test that ensures the menu changes
+		 * visibility when the menu icon is clicked. This test
+		 * has two expectations: does the menu display when
+		 * clicked and does it hide when clicked again.
+		 */
 		it('clicking menu icon changes menu display', function() {
 			$('.menu-icon-link').click();
 			expect($('body').hasClass('menu-hidden')).toBeFalsy();
@@ -74,12 +71,12 @@ $(function() {
 		});
 	});
 
-    /* a new test suite named "Initial Entries" */
+	/* a new test suite named "Initial Entries" */
 	describe('Initial Entries', function() {
-        /* a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         */
+		/* a test that ensures when the loadFeed
+		 * function is called and completes its work, there is at least
+		 * a single .entry element within the .feed container.
+		 */
 		var numEntries = 0;
 		beforeEach(function(done) {
 			loadFeed(0, function() {
@@ -93,11 +90,11 @@ $(function() {
 		});
 	});
 
-    /* a new test suite named "New Feed Selection"*/
+	/* a new test suite named "New Feed Selection"*/
 	describe('New Feed Selection', function() {
-        /* a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         */
+		/* a test that ensures when a new feed is loaded
+		 * by the loadFeed function that the content actually changes.
+		 */
 		var contentBefore, contentAfter;
 
 		beforeEach(function(done) {
@@ -107,11 +104,13 @@ $(function() {
 			});
 		});
 
-		it("content changes after load feed function runs", function() {
+		it("content changes after load feed function runs", function(done) {
 			loadFeed(1, function () {
 				contentAfter = $('div.feed').html();
+				expect(contentBefore).not.toBe(contentAfter);
+				done();
 			});
-			expect(contentBefore).not.toBe(contentAfter);
+			
 		});
 	});
 }());
